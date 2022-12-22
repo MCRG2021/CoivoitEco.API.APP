@@ -1,0 +1,33 @@
+﻿@inherits CovoitEco.APP.Components.Annonce.AnnonceProfileBase
+
+
+<input @bind="id" />
+<button @onclick="GetListAllAnnonceProfile">Get</button>
+
+
+@if (response  == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in response.Lists )
+        {
+            <tr>
+                <td>@forecast.ANNPR_AnnonceurPrenom</td>
+                <td>@forecast.ANNPR_AnnonceurNom</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@*component test *@

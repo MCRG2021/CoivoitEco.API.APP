@@ -1,0 +1,57 @@
+﻿
+@page "/GetAnnonceProfile"
+@using CovoitEco.APP.Model.Models
+@using Microsoft.AspNetCore.Cors
+@using Newtonsoft.Json
+@inject HttpClient Http
+
+
+<PageTitle>GetAnnonceProfile</PageTitle>
+
+<h1>Test <code>HttpClient</code></h1>
+
+
+@if (todoItems  == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in todoItems.Lists )
+        {
+            <tr>
+                <td>@forecast.ANNPR_AnnonceurPrenom</td>
+                <td>@forecast.ANNPR_AnnonceurNom</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    private AnnonceProfileVm todoItems;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //todoItems = await Http.GetFromJsonAsync<AnnonceProfileVm>("https://localhost:7197/api/Annonce/GetAllAnnonceProfile?id=1");
+
+       
+        var httpResponse = await Http.GetAsync("https://localhost:7197/api/Annonce/GetAllAnnonceProfile?id=1");
+        if (!httpResponse.IsSuccessStatusCode) throw new Exception(); 
+        var content = await httpResponse.Content.ReadAsStringAsync();
+        todoItems = JsonConvert.DeserializeObject<AnnonceProfileVm>(content);
+    }
+
+
+}
+
+@*component test *@

@@ -1,0 +1,24 @@
+﻿@page "/CompteAnnonce"
+@using CovoitEco.APP.Views.Annonce
+@inherits CovoitEco.APP.Components.Annonce.AnnonceComponent
+
+<PageTitle>Annonces</PageTitle>
+
+<h1>Liste de mes annonces</h1>
+
+<p></p>
+
+<div class="row">
+    <div class="col-md-10">
+        @*Place for other item*@
+    </div>
+    <div class="col-md-2">
+        <a href="/Publier">Publier une annonce</a> 
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <GetAllAnnonceProfileView />
+    </div>
+</div>
+
